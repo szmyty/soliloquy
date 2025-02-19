@@ -1,15 +1,14 @@
-# Base image
-FROM python:3.11
+# Use official Python image as base
+FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
 
-# Install dependencies
-COPY pyproject.toml poetry.lock ./
+# Copy the project files
+COPY . .
+
+# Install Poetry & dependencies
 RUN pip install poetry && poetry install --no-dev
 
-# Copy app files
-COPY soliloquy/ soliloquy/
-
-# Expose the port and run the app
-CMD ["poetry", "run", "chainlit", "run", "soliloquy/chat.py"]
+# Set the default command to run the CLI tool
+ENTRYPOINT ["poetry", "run", "chainlit", "run", "soliloquy/chat.py"]
