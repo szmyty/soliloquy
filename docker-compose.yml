@@ -1,0 +1,18 @@
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    restart: unless-stopped
+
+  soliloquy:
+    build: .
+    container_name: soliloquy
+    ports:
+      - "8000:8000"
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_MODEL=mistral
+    command: ["poetry", "run", "chainlit", "run", "soliloquy/chat.py"]
