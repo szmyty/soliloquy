@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "soliloquy"
+version = "0.1.0"
+description = "Chat privately with PDFs using a local LLM and Chainlit."
+authors = ["Alan Szmyt <szmyty@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+chainlit = "^0.7.0"
+pypdf = "^3.15.5"
+ollama = "^0.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
